@@ -1,0 +1,77 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+/* Content styling */
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* Create a wave separator */
+.wave-container {
+    width: 50%;
+    height: 10px; /* Height of the wave container */
+    margin-top: 400px; /* Position the wave 400px from the top */
+    /* background: linear-gradient(to bottom, transparent 50%, #0099ff 50%); */
+    border-radius: 100% 100% 0 0; /* Curves the top of the container */
+}
+
+.wave-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, transparent 50%, #0099ff 50%);
+    border-radius: 100% 100% ;
+}
+
+/* Create a simple curved line */
+.wave {
+    width: 100%;
+    height: 50px; /* Height of the wave */
+    margin-top: 400px; /* Positioning 400px from the top */
+    background: #0099ff; /* Wave color */
+    border-top-left-radius: 50% 10px;
+    border-top-right-radius: 50% 10px;
+    position: relative;
+}

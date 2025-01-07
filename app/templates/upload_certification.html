@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Certification</title>
+    <!-- Add your CSS for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .secondary-nav {
+            margin-bottom: 20px;
+        }
+        .nav-item {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .nav-item.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Secondary Navbar for toggling -->
+        <div class="secondary-nav">
+            <div id="certificates-tab" class="nav-item active" onclick="toggleTab('certificates')">Certificates</div>
+            <div id="resume-tab" class="nav-item" onclick="toggleTab('resume')">Resume/CV</div>
+        </div>
+
+        <!-- Certificates Section -->
+        <div id="certificates-section" class="form-section active">
+            <h3>Upload Certification</h3>
+            <form action="{{ url_for('main.upload_certification') }}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div>
+                    <label for="issued_by">Issued By:</label>
+                    <input type="text" name="issued_by" required>
+                </div>
+                <div>
+                    <label for="file">File:</label>
+                    <input type="file" name="file" accept=".pdf, .jpg, .png" required>
+                </div>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <!-- Resume/CV Section -->
+        <div id="resume-section" class="form-section">
+            <h3>Upload Resume/CV</h3>
+            <form action="{{ url_for('main.upload_resume') }}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="resume_file">Resume/CV File:</label>
+                    <input type="file" name="resume_file" accept=".pdf, .docx, .doc" required>
+                </div>
+                <button type="submit">Upload Resume</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for toggling sections -->
+    <script>
+        function toggleTab(tab) {
+            // Hide both sections first
+            document.getElementById('certificates-section').classList.remove('active');
+            document.getElementById('resume-section').classList.remove('active');
+            document.getElementById('certificates-tab').classList.remove('active');
+            document.getElementById('resume-tab').classList.remove('active');
+
+            // Show the selected section and activate the tab
+            if (tab === 'certificates') {
+                document.getElementById('certificates-section').classList.add('active');
+                document.getElementById('certificates-tab').classList.add('active');
+            } else if (tab === 'resume') {
+                document.getElementById('resume-section').classList.add('active');
+                document.getElementById('resume-tab').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

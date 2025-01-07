@@ -3,36 +3,50 @@
 {% block title %}Portfolio - Home{% endblock %}
 
 {% block content %}
-    <h1>Welcome to My Portfolio</h1>
+<h1>Welcome to My Portfolio</h1>
 
-    <h2>Projects</h2>
-    <ul>
-        {% for project in projects %}
-            <li>{{ project.name }} - {{ project.status }}</li>
-        {% endfor %}
-    </ul>
+<h2>Projects</h2>
+<ul>
+    {% for project in projects %}
+    <li>{{ project.name }} - {{ project.status }}</li>
+    {% endfor %}
+</ul>
 
-    <h2>Certifications</h2>
-    <ul>
-        {% for cert in certifications %}
-            <li>{{ cert.title }} - {{ cert.issued_by }} <a href="{{ cert.file_path }}" download>Download</a></li>
-        {% endfor %}
-    </ul>
+<h2>Certifications</h2>
+<ul>
+    {% for cert in certifications %}
+    <li>{{ cert.title }} - {{ cert.issued_by }} <a href="{{ cert.file_path }}" download>Download</a></li>
+    {% endfor %}
+</ul>
 
-    
-    <a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
-    <a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
 
-   <!-- Wave separator -->
+<a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
+<a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
+
+<!-- Wave separator -->
 <!-- Wave separator -->
 <!-- <div class="wave-container"></div>
-  -->
 
-  <!-- Wave separator -->
-<div class="wave"></div>
+Half-Oval
+<div class="half-oval"></div>
+
+
+<div class="image-container">
+    <img src="your-image-path.jpg" alt="Profile Image">
+</div> -->
+<div class="wave-container">
+    <div class="half-oval-frame-top">
+        <img src="your-image-path.jpg" alt="Profile Image">
+    </div>
+
+    <div class="half-oval-frame-bottom">
+        <img src="your-image-path.jpg" alt="Profile Image">
+    </div>
+
+    <div class="half-oval-frame-right">
+        <img src="your-image-path.jpg" alt="Profile Image">
+    </div>
+</div>
 
 
 {% endblock %}
-
-
-

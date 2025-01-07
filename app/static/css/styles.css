@@ -44,34 +44,53 @@ h1 {
 
 
 
-
 /* Create a wave separator */
-.wave-container {
-    width: 50%;
-    height: 10px; /* Height of the wave container */
-    margin-top: 400px; /* Position the wave 400px from the top */
-    /* background: linear-gradient(to bottom, transparent 50%, #0099ff 50%); */
-    border-radius: 100% 100% 0 0; /* Curves the top of the container */
+
+.wave-container{
+    position: relative;
+    top: 400px;
 }
 
-.wave-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+
+.half-oval-frame-top {
+    position: relative;
+    top: 200px;
+    left: 49px;
+    width: 50%; /* Width of the oval frame */
+    height: 400px; /* Height of the oval frame */
+    border: 5px solid blue; /* Blue border */
+    border-radius: 50% ; /* Creates an oval shape */
+    overflow: hidden; /* Ensures the image stays within the frame */
+    clip-path: inset(0 0 80% 0); /* Cuts off the lower half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.half-oval-frame img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, transparent 50%, #0099ff 50%);
-    border-radius: 100% 100% ;
+    object-fit: cover; /* Ensures the image fits within the frame */
 }
 
-/* Create a simple curved line */
-.wave {
-    width: 100%;
-    height: 50px; /* Height of the wave */
-    margin-top: 400px; /* Positioning 400px from the top */
-    background: #0099ff; /* Wave color */
-    border-top-left-radius: 50% 10px;
-    border-top-right-radius: 50% 10px;
+.half-oval-frame-bottom {
     position: relative;
+    bottom: 450px;
+    left: 700px;
+    width: 50%; /* Width of the oval frame */
+    height: 400px; /* Height of the oval frame */
+    border: 5px solid blue; /* Blue border */
+    border-radius: 50% ; /* Creates an oval shape */
+    overflow: hidden; /* Ensures the image stays within the frame */
+    clip-path: inset(80% 0 0 0); /* Cuts off the lower half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.half-oval-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fits within the frame */
+}
+

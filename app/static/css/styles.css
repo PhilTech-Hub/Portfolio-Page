@@ -5,10 +5,11 @@
     box-sizing: border-box;
 }
 
+
 /* Navbar styling */
 nav {
-    background-color: #333;
-    padding: 10px;
+    background-color: #4b5038;
+    padding: 15px;
 }
 
 nav ul {
@@ -29,12 +30,13 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #f39c12;
+    text-decoration: underline;
 }
 
 /* Content styling */
 .container {
     text-align: center;
-    padding: 20px;
+    padding: 0;
 }
 
 h1 {
@@ -43,21 +45,61 @@ h1 {
 }
 
 
+.level-1 {
+    /* background-color: rgba(0, 54, 233, 0.3); Blue overlay */
+    background-image: url(../images/Wallpaer.PNG); /* Image */
+    background-size: cover; /* Ensures the image covers the container */
+    background-position: center; /* Centers the image */
+    height: 860px; /* Sets the height of the container */
+    position: relative; /* Allows positioning of other elements inside */
+    top: 0px; /* Adjusts vertical position if necessary */
+    width: 100%; /* Ensures full width */
+    border-top: 3px solid #f39c12;
+}
+
+
+/*Type Writing Functionality*/
+.typewriter {
+    position: relative;
+    top: 50px;
+    left: 500px;
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Typewriter-style font */
+    font-size: 2rem; /* Adjust size as needed */
+    white-space: nowrap;
+    overflow: hidden; /* Ensures text does not overflow */
+    border-right: 2px solid; /* Simulates the cursor */
+    width: 20ch; /* Defines the space for the text */
+    animation: blink 0.6s step-end infinite; /* Cursor blink animation */
+    color: #f39c12;
+}
+
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: black;
+    }
+}
+
+
 
 /* Create a wave separator */
 
 .wave-container{
     position: relative;
-    top: 400px;
+    top: 10px;
+    left: 0px;
+    right: 0px;
 }
 
 
 .half-oval-frame-top {
     position: relative;
     top: 200px;
-    left: 49px;
-    width: 50%; /* Width of the oval frame */
-    height: 400px; /* Height of the oval frame */
+    left: -140px;
+    width: 65%; /* Width of the oval frame */
+    height: 250px; /* Height of the oval frame */
     border: 5px solid blue; /* Blue border */
     border-radius: 50% ; /* Creates an oval shape */
     overflow: hidden; /* Ensures the image stays within the frame */
@@ -65,6 +107,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
 }
 
 .half-oval-frame img {
@@ -75,10 +118,10 @@ h1 {
 
 .half-oval-frame-bottom {
     position: relative;
-    bottom: 450px;
+    bottom: 213px;
     left: 700px;
-    width: 50%; /* Width of the oval frame */
-    height: 400px; /* Height of the oval frame */
+    width: 65%; /* Width of the oval frame */
+    height: 250px; /* Height of the oval frame */
     border: 5px solid blue; /* Blue border */
     border-radius: 50% ; /* Creates an oval shape */
     overflow: hidden; /* Ensures the image stays within the frame */
@@ -86,6 +129,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
 }
 
 .half-oval-frame img {

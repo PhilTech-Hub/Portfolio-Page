@@ -3,25 +3,31 @@
 {% block title %}Portfolio - Home{% endblock %}
 
 {% block content %}
-<h1>Welcome to My Portfolio</h1>
+<div class="level-1">
+    <div class="typewriter">
+        <h1 id="typewriter-text"></h1>
+      </div>
+      
 
-<h2>Projects</h2>
-<ul>
-    {% for project in projects %}
-    <li>{{ project.name }} - {{ project.status }}</li>
-    {% endfor %}
-</ul>
-
-<h2>Certifications</h2>
-<ul>
-    {% for cert in certifications %}
-    <li>{{ cert.title }} - {{ cert.issued_by }} <a href="{{ cert.file_path }}" download>Download</a></li>
-    {% endfor %}
-</ul>
-
-
-<a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
-<a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li>{{ project.name }} - {{ project.status }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Certifications</h2>
+    <ul>
+        {% for cert in certifications %}
+        <li>{{ cert.title }} - {{ cert.issued_by }} <a href="{{ cert.file_path }}" download>Download</a></li>
+        {% endfor %}
+    </ul>
+    
+    
+    <a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
+    <a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
+    
+</div>
 
 <!-- Wave separator -->
 <!-- Wave separator -->
@@ -43,9 +49,7 @@ Half-Oval
         <img src="your-image-path.jpg" alt="Profile Image">
     </div>
 
-    <div class="half-oval-frame-right">
-        <img src="your-image-path.jpg" alt="Profile Image">
-    </div>
+    
 </div>
 
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Portfolio Page - Philemon{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
 </head>
 <body>
 
@@ -25,6 +26,7 @@
         <!-- Each page will insert its content here -->
         {% endblock %}
     </div>
-
+     <!-- Include JavaScript files -->
+     <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
 </body>
 </html>

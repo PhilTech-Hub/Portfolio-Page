@@ -2,6 +2,7 @@ import os
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.models import Project, Certification
+from flask_login import login_required, current_user
 
 # Define a Blueprint for routes
 bp = Blueprint('main', __name__)
@@ -9,6 +10,10 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 def home():
     return render_template('index.html')
+
+@bp.route('/profile')
+def profile():
+    return render_template('profile.html', user=current_user)
 
 
 @bp.route('/about')
@@ -30,7 +35,9 @@ def blog():
 
 
 
+
 @bp.route('/upload_project', methods=['GET', 'POST'])
+@login_required
 def upload_project():
     if request.method == 'POST':
         name = request.form['name']
@@ -44,6 +51,7 @@ def upload_project():
     return render_template('upload_project.html')
 
 @bp.route('/upload_certification', methods=['GET', 'POST'])
+@login_required
 def upload_certification():
     if request.method == 'POST':
         title = request.form['title']

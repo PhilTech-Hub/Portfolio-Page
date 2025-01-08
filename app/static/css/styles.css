@@ -33,6 +33,21 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+nav ul li .logout{
+    position: relative;
+    border: 2px solid white;
+    padding: 3px;
+    left: 300px;
+    border-radius: 5px;
+}
+
+nav ul li .logout:hover{
+    position: relative;
+    border: 2px solid #f39c12;
+    text-decoration: none;
+
+}
+
 /* Content styling */
 .container {
     text-align: center;

@@ -4,29 +4,35 @@
 
 {% block content %}
 <div class="level-1">
-    <div class="typewriter">
-        <h1 id="typewriter-text"></h1>
-      </div>
-      
+    <div class="level-1-content">
+        <div class="typewriter-container">
+            <!-- New Typewriter Effect -->
+            <div class="typewriter">
+                <h2 id="introTypewriter"></h2>
+            </div>
+        
+            <!-- Existing Typewriter Effect -->
+            <div class="typewriter">
+                <h1 id="welcomeTypewriter"></h1>
+            </div>
+        </div>
+        
 
-    <h2>Projects</h2>
-    <ul>
-        {% for project in projects %}
-        <li>{{ project.name }} - {{ project.status }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Certifications</h2>
-    <ul>
-        {% for cert in certifications %}
-        <li>{{ cert.title }} - {{ cert.issued_by }} <a href="{{ cert.file_path }}" download>Download</a></li>
-        {% endfor %}
-    </ul>
-    
-    
-    <a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
-    <a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
-    
+        <div class="projects">
+            <h2>~ Projects Completed ~</h2>
+            <p id="projectCount" class="count">Projects - 0</p> <!-- Counter element -->
+        </div>
+        <div class="certifications">
+            <h2>~ Certifications Award ~</h2>
+            <p id="certificationCount" class="count">Certifications - 0</p> <!-- Counter element -->
+        </div>
+
+        
+        
+        <a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
+        <a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
+    </div>
+
 </div>
 
 <!-- Wave separator -->
@@ -40,7 +46,7 @@ Half-Oval
 <div class="image-container">
     <img src="your-image-path.jpg" alt="Profile Image">
 </div> -->
-<div class="wave-container">
+<!-- <div class="wave-container">
     <div class="half-oval-frame-top">
         <img src="your-image-path.jpg" alt="Profile Image">
     </div>
@@ -49,8 +55,8 @@ Half-Oval
         <img src="your-image-path.jpg" alt="Profile Image">
     </div>
 
-    
-</div>
+
+</div> -->
 
 
 {% endblock %}

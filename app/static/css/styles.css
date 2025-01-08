@@ -8,7 +8,7 @@
 
 /* Navbar styling */
 nav {
-    background-color: #4b5038;
+    background-color: #174bd8;
     padding: 15px;
 }
 
@@ -46,41 +46,84 @@ h1 {
 
 
 .level-1 {
-    /* background-color: rgba(0, 54, 233, 0.3); Blue overlay */
-    background-image: url(../images/Wallpaer.PNG); /* Image */
+    background-image: url(../images/bg1.jpg); /* Image */
     background-size: cover; /* Ensures the image covers the container */
     background-position: center; /* Centers the image */
     height: 860px; /* Sets the height of the container */
-    position: relative; /* Allows positioning of other elements inside */
+    position: relative; /* Allows positioning of the overlay and other elements */
     top: 0px; /* Adjusts vertical position if necessary */
     width: 100%; /* Ensures full width */
-    border-top: 3px solid #f39c12;
+    border-top: 3px solid #f39600;
+    overflow: hidden; /* Prevents the overlay from spilling outside */
 }
+
+.level-1::before {
+    content: ''; /* Required for pseudo-element */
+    position: absolute; /* Ensures it covers the parent element */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 54, 233, 0.3); /* Blue overlay */
+    z-index: 1; /* Ensures it overlays the background but is below text */
+}
+
+.level-1-content {
+    position: relative; /* Ensures content appears above the overlay */
+    z-index: 2; /* Places the text/content above the blue overlay */
+    color: white; /* Ensures text is visible over the overlay */
+    text-align: center; /* Centers the content */
+    padding-top: 20px; /* Adjust padding as needed */
+}
+
 
 
 /*Type Writing Functionality*/
-.typewriter {
-    position: relative;
-    top: 50px;
-    left: 500px;
-    font-family: Georgia, 'Times New Roman', Times, serif; /* Typewriter-style font */
-    font-size: 2rem; /* Adjust size as needed */
-    white-space: nowrap;
-    overflow: hidden; /* Ensures text does not overflow */
-    border-right: 2px solid; /* Simulates the cursor */
-    width: 20ch; /* Defines the space for the text */
-    animation: blink 0.6s step-end infinite; /* Cursor blink animation */
-    color: #f39c12;
+.typewriter-container {
+    text-align: center;
+    margin-top: 100px;
 }
 
-@keyframes blink {
-    from, to {
+.typewriter h2, .typewriter h1 {
+    font-size: 2em;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid orange; /* Cursor effect */
+    width: fit-content;
+    margin: 0 auto;
+    animation: blinkCursor 0.6s infinite;
+}
+
+.typewriter h1{
+    margin-top: 20px;
+}
+
+@keyframes blinkCursor {
+    0%, 100% {
         border-color: transparent;
     }
     50% {
-        border-color: black;
+        border-color: orange;
     }
 }
+
+
+.projects{
+    margin-top: 200px;
+}
+
+.certifications{
+    margin-top: 20px;
+}
+
+.count {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f39c12;
+    margin-bottom: 10px;
+}
+
 
 
 

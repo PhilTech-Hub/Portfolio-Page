@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Portfolio Page - Philemon{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
 
 </head>
 
@@ -38,6 +40,45 @@
         <!-- Each page will insert its content here -->
         {% endblock %}
     </div>
+
+    <div class="footer">
+        <div class="footer-column">
+            <h3>Contacts</h3>
+            <p>Email: example@email.com</p>
+            <p>Phone: 0728992182</p>
+            <p>Location: Nairobi, Kenya</p>
+        </div>
+        <div class="footer-column">
+            <h3>Skills</h3>
+            <ul>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>HTML & CSS</li>
+                <li>ReactJS</li>
+                <li>Django</li>
+                <li>Flask</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Projects</h3>
+            <ul>
+                <li>Portfolio Website</li>
+                <li>E-Commerce Platform</li>
+                <li>Blog Platform</li>
+                <li>Task Manager App</li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Main Menu</h3>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Include JavaScript files -->
     <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
     <script src="{{ url_for('static', filename='js/counting.js') }}"></script>

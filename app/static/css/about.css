@@ -1,0 +1,150 @@
+/* General Styles for the About Page */
+.about-page {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #f8f9fa;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 40px;
+}
+
+.intro{
+    position: relative;
+    left: 900px;
+    width: 700px;
+    height: fit-content;
+    padding: 20px;
+}
+
+/* Section 1: Introduction */
+.intro h1 {
+    text-align: center;
+    color: orangered;
+}
+
+.intro p {
+    text-align: justify;
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* Section 2: Skills */
+.skills{
+    position: relative;
+    top: 200px;
+    background-color: #fff;
+    height: fit-content;
+    padding: 50px;
+}
+.skills-wrapper{
+   
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 70px;
+    text-align: left;
+}
+.skills h2 {
+    color: orangered;
+    text-align: center;
+    font-size: 1.7rem;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.skills-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.skills-list h3{
+    color:#007bff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+.skills-list ul {
+    list-style-type: circle;
+    padding-left: 0;
+}
+
+.skills-list li {
+    font-size: 1.1em;
+    color: #333;
+    margin: 5px 10px;
+}
+
+/* Section 3: Education */
+.education{
+    position: relative;
+    margin-top: 270px;
+}
+.education h2 {
+    color: orangered;
+    text-align: center;
+}
+
+.education-details {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Section 4: Projects Overview */
+.project-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+}
+
+.project-card h3 {
+    color: orangered;
+}
+
+.project-card p {
+    color: #555;
+}
+
+/* Section 5: Certifications */
+.certification-list {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.certification-list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.certification-list li {
+    margin: 5px 0;
+}
+
+/* Section 6: Contact/CTA */
+.contact p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}

@@ -33,7 +33,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-nav ul li .logout{
+nav ul li .logout {
     position: relative;
     border: 2px solid white;
     padding: 3px;
@@ -41,7 +41,7 @@ nav ul li .logout{
     border-radius: 5px;
 }
 
-nav ul li .logout:hover{
+nav ul li .logout:hover {
     position: relative;
     border: 2px solid #f39c12;
     text-decoration: none;
@@ -61,34 +61,51 @@ h1 {
 
 
 .level-1 {
-    background-image: url(../images/bg1.jpg); /* Image */
-    background-size: cover; /* Ensures the image covers the container */
-    background-position: center; /* Centers the image */
-    height: 860px; /* Sets the height of the container */
-    position: relative; /* Allows positioning of the overlay and other elements */
-    top: 0px; /* Adjusts vertical position if necessary */
-    width: 100%; /* Ensures full width */
+    background-image: url(../images/bg1.jpg);
+    /* Image */
+    background-size: cover;
+    /* Ensures the image covers the container */
+    background-position: center;
+    /* Centers the image */
+    height: 860px;
+    /* Sets the height of the container */
+    position: relative;
+    /* Allows positioning of the overlay and other elements */
+    top: 0px;
+    /* Adjusts vertical position if necessary */
+    width: 100%;
+    /* Ensures full width */
     border-top: 3px solid #f39600;
-    overflow: hidden; /* Prevents the overlay from spilling outside */
+    overflow: hidden;
+    /* Prevents the overlay from spilling outside */
 }
 
 .level-1::before {
-    content: ''; /* Required for pseudo-element */
-    position: absolute; /* Ensures it covers the parent element */
+    content: '';
+    /* Required for pseudo-element */
+    position: absolute;
+    /* Ensures it covers the parent element */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 54, 233, 0.3); /* Blue overlay */
-    z-index: 1; /* Ensures it overlays the background but is below text */
+    background-color: rgba(0, 54, 233, 0.3);
+    /* Blue overlay */
+    z-index: 1;
+    /* Ensures it overlays the background but is below text */
 }
 
 .level-1-content {
-    position: relative; /* Ensures content appears above the overlay */
-    z-index: 2; /* Places the text/content above the blue overlay */
-    color: white; /* Ensures text is visible over the overlay */
-    text-align: center; /* Centers the content */
-    padding-top: 20px; /* Adjust padding as needed */
+    position: relative;
+    /* Ensures content appears above the overlay */
+    z-index: 2;
+    /* Places the text/content above the blue overlay */
+    color: white;
+    /* Ensures text is visible over the overlay */
+    text-align: center;
+    /* Centers the content */
+    padding-top: 20px;
+    /* Adjust padding as needed */
 }
 
 
@@ -99,36 +116,41 @@ h1 {
     margin-top: 100px;
 }
 
-.typewriter h2, .typewriter h1 {
+.typewriter h2,
+.typewriter h1 {
     font-size: 2em;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid orange; /* Cursor effect */
+    border-right: 2px solid orange;
+    /* Cursor effect */
     width: fit-content;
     margin: 0 auto;
     animation: blinkCursor 0.6s infinite;
 }
 
-.typewriter h1{
+.typewriter h1 {
     margin-top: 20px;
 }
 
 @keyframes blinkCursor {
-    0%, 100% {
+
+    0%,
+    100% {
         border-color: transparent;
     }
+
     50% {
         border-color: orange;
     }
 }
 
 
-.projects{
+.projects {
     margin-top: 200px;
 }
 
-.certifications{
+.certifications {
     margin-top: 20px;
 }
 
@@ -158,7 +180,8 @@ h1 {
 .blog-slider {
     position: relative;
     width: 100%;
-    overflow: hidden; /* Hides the extra cards that go out of view */
+    overflow: hidden;
+    /* Hides the extra cards that go out of view */
 }
 
 .blog-cards-container {
@@ -201,7 +224,8 @@ h1 {
     margin-top: 20px;
 }
 
-.prev-arrow, .next-arrow {
+.prev-arrow,
+.next-arrow {
     background-color: #007bff;
     color: white;
     border: none;
@@ -212,38 +236,110 @@ h1 {
     transition: background 0.3s ease;
 }
 
-.prev-arrow:hover, .next-arrow:hover {
+.prev-arrow:hover,
+.next-arrow:hover {
     background-color: #0056b3;
 }
 
 
 /* Container for the scrolling statement */
-.scrolling-statement {
+.scrolling-tunnel-statement {
     width: 100%;
-    overflow: hidden; /* Ensures the statement stays within the boundaries */
-    background-color: #333; /* Optional: background color */
-    color: white; /* Text color */
+    overflow: hidden;
+    /* Ensures the statement stays within the boundaries */
+    background-color: #333;
+    /* Optional: background color */
+    color: white;
+    /* Text color */
     padding: 10px 0;
     position: relative;
+    text-align: right;
+    /* Aligns the text */
 }
 
 /* The actual text that will scroll */
-.scrolling-statement p {
-    white-space: nowrap; /* Prevents the text from wrapping */
+.scrolling-tunnel-statement p {
+    white-space: nowrap;
+    /* Prevents the text from wrapping */
     font-size: 1.2em;
     font-weight: bold;
     margin: 0;
-    padding-left: 100%; /* Start from outside the container on the left */
-    animation: scroll-left-to-right 10s linear infinite; /* Scrolls the text from left to right */
+    animation: scroll-from-center 20s linear infinite;
+    /* Scroll from center */
+    display: inline-block;
+    /* Makes the text inline */
 }
 
 /* Keyframes to animate the scrolling effect */
-@keyframes scroll-left-to-right {
+@keyframes scroll-from-center {
     0% {
-        transform: translateX(100%); /* Start from outside the right */
+        transform: translateX(0);
+        /* Start at the center */
     }
+
     100% {
-        transform: translateX(-100%); /* Move completely to the left */
+        transform: translateX(-100%);
+        /* Move to the left, outside the container */
     }
 }
 
+
+/* Styling for the footer */
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Creates 4 equal columns */
+    gap: 20px;
+    /* Space between columns */
+    background-color: #87888b;
+    /* Background color of the footer */
+    color: rgb(44, 94, 141);
+    /* Text color */
+    padding: 40px 20px;
+    text-align: left;
+    /* Align text to the left */
+}
+
+/* Styling for each column */
+.footer-column h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: rgb(20, 104, 230);
+    /* Heading color */
+}
+
+.footer-column p,
+.footer-column ul {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    /* Remove bullets */
+    padding-left: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column a {
+    color: white;
+    /* Link color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.footer-column a:hover {
+    color: #ffcc00;
+    /* Change link color on hover */
+}
+
+/* Ensure the footer is responsive on smaller screens */
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        /* Stack columns on small screens */
+    }
+}

@@ -39,7 +39,7 @@ def login():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('profile'))  # Redirect to the profile page
+            return redirect(url_for('main.profile'))  # Redirect to the profile page
         else:
             flash('Invalid email or password. Please try again.', 'danger')
             return redirect(url_for('auth.login'))

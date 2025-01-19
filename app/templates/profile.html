@@ -1,0 +1,25 @@
+{% extends "profile_base.html" %}
+
+{% block title %}Portfolio - Home{% endblock %}
+
+{% block content %}
+<div class="container-warapper">
+    <div class="content">
+        <div class="welcome">
+            <h1>Welcome Back, Philemon!</h1>
+        </div>
+    
+    
+    
+        <div class="upload_project">
+            <a href="{{ url_for('main.upload_project') }}">Upload New Project</a>
+        </div>
+        <div class="upload_certification">
+            <a href="{{ url_for('main.upload_certification') }}">Upload New Certification</a>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}

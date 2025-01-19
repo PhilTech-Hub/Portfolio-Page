@@ -1,0 +1,345 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Navbar styling */
+nav {
+    background-color: #174bd8;
+    padding: 15px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+    text-decoration: underline;
+}
+
+nav ul li .logout {
+    position: relative;
+    border: 2px solid white;
+    padding: 3px;
+    left: 300px;
+    border-radius: 5px;
+}
+
+nav ul li .logout:hover {
+    position: relative;
+    border: 2px solid #f39c12;
+    text-decoration: none;
+
+}
+
+/* Content styling */
+.container {
+    text-align: center;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+
+.level-1 {
+    background-image: url(../images/bg1.jpg);
+    /* Image */
+    background-size: cover;
+    /* Ensures the image covers the container */
+    background-position: center;
+    /* Centers the image */
+    height: 860px;
+    /* Sets the height of the container */
+    position: relative;
+    /* Allows positioning of the overlay and other elements */
+    top: 0px;
+    /* Adjusts vertical position if necessary */
+    width: 100%;
+    /* Ensures full width */
+    border-top: 3px solid #f39600;
+    overflow: hidden;
+    /* Prevents the overlay from spilling outside */
+}
+
+.level-1::before {
+    content: '';
+    /* Required for pseudo-element */
+    position: absolute;
+    /* Ensures it covers the parent element */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 54, 233, 0.3);
+    /* Blue overlay */
+    z-index: 1;
+    /* Ensures it overlays the background but is below text */
+}
+
+.level-1-content {
+    position: relative;
+    /* Ensures content appears above the overlay */
+    z-index: 2;
+    /* Places the text/content above the blue overlay */
+    color: white;
+    /* Ensures text is visible over the overlay */
+    text-align: center;
+    /* Centers the content */
+    padding-top: 20px;
+    /* Adjust padding as needed */
+}
+
+
+
+/*Type Writing Functionality*/
+.typewriter-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.typewriter h2,
+.typewriter h1 {
+    font-size: 2em;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid orange;
+    /* Cursor effect */
+    width: fit-content;
+    margin: 0 auto;
+    animation: blinkCursor 0.6s infinite;
+}
+
+.typewriter h1 {
+    margin-top: 20px;
+}
+
+@keyframes blinkCursor {
+
+    0%,
+    100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+
+.projects {
+    margin-top: 200px;
+}
+
+.certifications {
+    margin-top: 20px;
+}
+
+.count {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f39c12;
+    margin-bottom: 10px;
+}
+
+
+
+/* Blog Section Styling */
+.blog-section {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    text-align: left;
+    font-size: 2em;
+    color: #0f3dd3;
+    margin-bottom: 50px;
+}
+
+.blog-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Hides the extra cards that go out of view */
+}
+
+.blog-cards-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.blog-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+    margin-right: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.blog-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.blog-card p {
+    font-size: 1em;
+    color: #0f3dd3;
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Navigation Arrows Styling */
+.slider-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.prev-arrow,
+.next-arrow {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.prev-arrow:hover,
+.next-arrow:hover {
+    background-color: #0056b3;
+}
+
+
+/* Container for the scrolling statement */
+.scrolling-tunnel-statement {
+    width: 100%;
+    overflow: hidden;
+    /* Ensures the statement stays within the boundaries */
+    background-color: #333;
+    /* Optional: background color */
+    color: white;
+    /* Text color */
+    padding: 10px 0;
+    position: relative;
+    text-align: right;
+    /* Aligns the text */
+}
+
+/* The actual text that will scroll */
+.scrolling-tunnel-statement p {
+    white-space: nowrap;
+    /* Prevents the text from wrapping */
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    animation: scroll-from-center 20s linear infinite;
+    /* Scroll from center */
+    display: inline-block;
+    /* Makes the text inline */
+}
+
+/* Keyframes to animate the scrolling effect */
+@keyframes scroll-from-center {
+    0% {
+        transform: translateX(0);
+        /* Start at the center */
+    }
+
+    100% {
+        transform: translateX(-100%);
+        /* Move to the left, outside the container */
+    }
+}
+
+
+/* Styling for the footer */
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Creates 4 equal columns */
+    gap: 20px;
+    /* Space between columns */
+    background-color: #87888b;
+    /* Background color of the footer */
+    color: rgb(44, 94, 141);
+    /* Text color */
+    padding: 40px 20px;
+    text-align: left;
+    /* Align text to the left */
+}
+
+/* Styling for each column */
+.footer-column h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: rgb(20, 104, 230);
+    /* Heading color */
+}
+
+.footer-column p,
+.footer-column ul {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    /* Remove bullets */
+    padding-left: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column a {
+    color: white;
+    /* Link color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.footer-column a:hover {
+    color: #ffcc00;
+    /* Change link color on hover */
+}
+
+/* Ensure the footer is responsive on smaller screens */
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        /* Stack columns on small screens */
+    }
+}

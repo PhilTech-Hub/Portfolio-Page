@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - Home{% endblock %}
+
+{% block content %}
+<div class="level-1">
+    <div class="level-1-content">
+        <div class="typewriter-container">
+            <!-- New Typewriter Effect -->
+            <div class="typewriter">
+                <h2 id="introTypewriter"></h2>
+            </div>
+
+            <!-- Existing Typewriter Effect -->
+            <div class="typewriter">
+                <h1 id="welcomeTypewriter"></h1>
+            </div>
+        </div>
+
+        <div class="projects">
+            <h2>~ Projects Completed ~</h2>
+            <p id="projectCount" class="count">Projects - 0</p> <!-- Counter element -->
+        </div>
+        <div class="certifications">
+            <h2>~ Certifications Award ~</h2>
+            <p id="certificationCount" class="count">Certifications - 0</p> <!-- Counter element -->
+        </div>
+
+    </div>
+</div>
+
+<div class="blog-section">
+    <h2 class="section-title">~ Featured Blogs ~</h2>
+    
+    <div class="blog-slider">
+        <!-- Blog Cards Container -->
+        <div class="blog-cards-container">
+            <div class="blog-card">
+                <h3>Understanding Web Development</h3>
+                <p>Explore the fundamentals of web development, including front-end, back-end, and full-stack technologies.</p>
+            </div>
+            <div class="blog-card">
+                <h3>The Future of AI in Tech</h3>
+                <p>Discover how artificial intelligence is transforming the tech industry and what the future holds.</p>
+            </div>
+            <div class="blog-card">
+                <h3>Best Practices for Software Security</h3>
+                <p>Learn about key security practices every developer should follow to protect their applications and data.</p>
+            </div>
+            <div class="blog-card">
+                <h3>Mobile App Development Trends</h3>
+                <p>Stay ahead of the curve by understanding the latest trends in mobile app development and design.</p>
+            </div>
+            <div class="blog-card">
+                <h3>Cloud Computing and Its Benefits</h3>
+                <p>Explore the advantages of cloud computing and how it is revolutionizing the way businesses operate.</p>
+            </div>
+            <div class="blog-card">
+                <h3>Building a Successful Startup in Tech</h3>
+                <p>Gain insights on how to build and grow a successful startup in the competitive tech world.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Arrows -->
+    <div class="slider-arrows">
+        <button class="prev-arrow">&#10094; Prev</button>
+        <button class="next-arrow">Next &#10095;</button>
+    </div>
+</div>
+
+<div class="scrolling-tunnel-statement">
+    <p>Let's Get in Touch. Call Me on: +254741103341;   Email Me at: victorphilemon001@gmail.com;   WhatsApp Me at: +254741103341 ...   Thank You ...</p>
+</div>
+
+
+{% endblock %}

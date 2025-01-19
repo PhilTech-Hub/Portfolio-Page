@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Project</title>
+</head>
+<body>
+    <h1>Upload New Project</h1>
+    <form method="POST">
+        <label for="name">Project Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+        <label for="technologies">Technologies Used:</label><br>
+        <input type="text" id="technologies" name="technologies" required><br><br>
+        <label for="status">Status:</label><br>
+        <select id="status" name="status" required>
+            <option value="initiated">Initiated</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select><br><br>
+        <input type="submit" value="Upload Project">
+    </form>
+</body>
+</html>

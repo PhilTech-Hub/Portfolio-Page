@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Portfolio Page - Philemon{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_styles.css') }}">
+
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('main.about') }}">About</a></li>
+            <li><a href="{{ url_for('main.projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('main.certifications') }}">Certifications</a></li>
+            <li><a href="{{ url_for('main.blog') }}">Blog</a></li>
+            <li><a href="{{ url_for('auth.logout') }}" class="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        {% block content %}
+        <!-- Each page will insert its content here -->
+        {% endblock %}
+    </div>
+    <!-- Include JavaScript files -->
+    <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/counting.js') }}"></script>
+
+</body>
+
+</html>

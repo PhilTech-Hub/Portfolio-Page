@@ -4,56 +4,55 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
+# Initialize Flask extensions
 db = SQLAlchemy()
-
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login'  # Redirect unauthorized users to login page
-
-
-
+login_manager.login_view = 'auth.login'
 
 def create_app():
     app = Flask(__name__)
 
     # Create the 'instance' folder if it doesn't exist
     instance_folder = os.path.join(os.getcwd(), 'instance')
-    if not os.path.exists(instance_folder):
-        os.makedirs(instance_folder)
+    os.makedirs(instance_folder, exist_ok=True)
+    if not os.access(instance_folder, os.W_OK):
+        raise PermissionError(f"Instance folder {instance_folder} is not writable.")
 
     # Set the database path and URI
     db_path = os.path.join(instance_folder, 'portfolio.db')
-    print(f"Database path: {db_path}")  # Debugging line to print the path
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', f'sqlite:///{db_path}')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.secret_key = secrets.token_hex(16)
-    
-    
+
+    # Debugging information
+    print(f"Instance folder: {instance_folder}")
+    print(f"Database URI: {app.config['SQLALCHEMY_DATABASE_URI']}")
+
+    # Set the secret key
+    app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
+    if 'SECRET_KEY' not in os.environ:
+        print("Warning: SECRET_KEY not found in environment, using a randomly generated key.")
+
+    # Initialize Flask extensions
     db.init_app(app)
     login_manager.init_app(app)
     migrate = Migrate(app, db)
-    
+
     # Avoid circular imports by placing this here
     from app.models import User
 
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))  # Load user by ID
+        return User.query.get(int(user_id))
 
-    # Create the tables (if they don't exist)
-    with app.app_context():
-        db.create_all()  # This will create the tables defined in your models
-
-    # Import and register Blueprint
+    # Import and register Blueprints
     from app.routes import bp
-    from app.auth_routes import auth_bp  # New Blueprint for Authentication
-    
+    from app.auth_routes import auth_bp
     app.register_blueprint(bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
-    
-
-
 
     return app

@@ -27,7 +27,7 @@ def create_app():
     db_path = os.path.join(instance_folder, 'portfolio.db')
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', f'sqlite:///{db_path}')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+    
     # Debugging information
     print(f"Instance folder: {instance_folder}")
     print(f"Database URI: {app.config['SQLALCHEMY_DATABASE_URI']}")

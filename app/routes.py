@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.models import Project, Certification
 from flask_login import login_required, current_user
+from flask import send_from_directory
 
 # Define a Blueprint for routes
 bp = Blueprint('main', __name__)
@@ -32,6 +33,14 @@ def certifications():
 def blog():
     return render_template('blog.html')
 
+
+@bp.route('/download_cv')
+def download_cv():
+    return send_from_directory(
+        os.path.join(bp.root_path, 'static/files'),
+        'My_CV.pdf',
+        as_attachment=True
+    )
 
 
 

@@ -6,124 +6,226 @@
 <div class="about-page">
     <!-- Section 1: Introduction -->
     <section class="intro">
-        <h1>About Me</h1>
-        <p>
-            Hi, I'm Philemon Victor Odera, a passionate software developer with expertise in various technologies.
-            I graduated in October 2023 with a Bachelor's degree in Business Information Technology from Multimedia
-            University of Kenya.
-            Over the years, I have developed skills in software engineering, web development, and networking. I am eager
-            to contribute to innovative tech solutions.
-        </p>
+        <div class="intro-content">
+            <img src="{{ url_for('static', filename='images/profile1.jpg') }}" alt="Profile Image" class="intro-image">
+            <div class="intro-text">
+                <h1>About Me</h1>
+                <p>
+                    Hi, I'm Philemon Victor Odera, a passionate software developer with expertise in various
+                    technologies.
+                    I graduated in October 2023 with a Bachelor's degree in Business Information Technology from
+                    Multimedia
+                    University of Kenya.
+                    Over the years, I have developed skills in software engineering, web development, and networking. I
+                    am eager
+                    to contribute to innovative tech solutions.
+                </p>
+            </div>
+        </div>
     </section>
+
 
     <!-- Section 2: Skills -->
     <section class="skills">
         <h2>Skills</h2>
         <section class="skills-wrapper">
+            <!-- Programming Languages -->
             <div class="skills-list">
-                <h3>Software Development Skills</h3>
+                <h3>Programming Languages</h3>
                 <ul>
                     <li>Python</li>
                     <li>JavaScript</li>
-                    <li>ReactJS</li>
-                    <li>Flask</li>
-                    <li>Django</li>
-                    <li>Web Development</li>
-                    <li>Database Design</li>
-                    <li>Networking</li>
-                    <li>Node.js</li>
-                    <li>ES6, TypeScript</li>
-                    <li>Debugging</li>
+                    <li>TypeScript</li>
+                    <li>C++</li>
+                    <li>SQL</li>
+                    <li>PHP</li>
                 </ul>
             </div>
+
+            <!-- Frameworks & Tools -->
             <div class="skills-list">
-                <h3>Software Development Skills</h3>
+                <h3>Frameworks & Tools</h3>
                 <ul>
-                    <li>Python</li>
-                    <li>JavaScript</li>
                     <li>ReactJS</li>
                     <li>Flask</li>
                     <li>Django</li>
-                    <li>Web Development</li>
-                    <li>Database Design</li>
-                    <li>Networking</li>
                     <li>Node.js</li>
-                    <li>ES6, TypeScript</li>
-                    <li>Debugging</li>
+                    <li>Express.js</li>
+                    <li>Bootstrap</li>
+                    <li>Oracle DB</li>
+                    <li>PostgreSQL</li>
+                    <li>MongoDB</li>
+                    <li>CI/CD Pipelines (GitLab CI/CD, Jenkins)</li>
                 </ul>
             </div>
+
+            <!-- Other Technical Skills -->
             <div class="skills-list">
-                <h3>Software Development Skills</h3>
+                <h3>Other Technical Skills</h3>
                 <ul>
-                    <li>Python</li>
-                    <li>JavaScript</li>
-                    <li>ReactJS</li>
-                    <li>Flask</li>
-                    <li>Django</li>
                     <li>Web Development</li>
                     <li>Database Design</li>
                     <li>Networking</li>
-                    <li>Node.js</li>
-                    <li>ES6, TypeScript</li>
-                    <li>Debugging</li>
+                    <li>Cloud Computing (AWS, Azure)</li>
+                    <li>Network Security (SSL/TLS, VPN, IDS/IPS)</li>
+                    <li>Version Control (Git/GitHub)</li>
+                    <li>RESTful API Design</li>
+                    <li>Debugging & Troubleshooting</li>
+                    <li>IT Consulting & Technical Support</li>
                 </ul>
             </div>
         </section>
     </section>
 
+
     <!-- Section 3: Education -->
     <section class="education">
-        <h2>Education</h2>
+        <h2><span class="graduation-cap">&#x1F393;</span> Education</h2>
         <div class="education-details">
             <p><strong>Bachelor's in Business Information Technology</strong></p>
             <p>Multimedia University of Kenya, Graduated in October 2023</p>
         </div>
     </section>
 
+
     <!-- Section 4: Projects -->
     <section class="projects">
         <h2>Some of My Projects</h2>
         <div class="project-cards">
+            <!-- Project 1 -->
             <div class="project-card">
                 <h3>Project 1: E-commerce Website</h3>
-                <p>A full-stack application for buying and selling products, integrating PayPal and MPesa payment
-                    methods. Built using Flask for the backend, ReactJS for the frontend, and PostgreSQL for the
-                    database.</p>
+                <p>
+                    A full-stack application for buying and selling products, integrating PayPal and MPesa payment
+                    methods.
+                    Built using Flask for the backend, ReactJS for the frontend, and PostgreSQL for the database.
+                </p>
             </div>
+
+            <!-- Project 2 -->
             <div class="project-card">
                 <h3>Project 2: Portfolio Website</h3>
-                <p>My personal portfolio website showcasing my skills, projects, and achievements. Built with Flask,
-                    ReactJS, and integrated with a dynamic project management system for uploading and displaying my
-                    work.</p>
+                <p>
+                    My personal portfolio website showcasing my skills, projects, and achievements. Built with Flask,
+                    ReactJS,
+                    and integrated with a dynamic project management system for uploading and displaying my work.
+                </p>
             </div>
+
+            <!-- Project 3 -->
             <div class="project-card">
                 <h3>Project 3: Vix Incoporation Website</h3>
-                <p>A corporate website for Vix Incoporation, a tech company in Kenya. The website showcases the
-                    company’s services and allows customers to request services. Developed using Flask, ReactJS, and
-                    Oracle for the database.</p>
+                <p>
+                    A corporate website for Vix Incoporation, a tech company in Kenya. The website showcases the
+                    company’s
+                    services and allows customers to request services. Developed using Flask, ReactJS, and Oracle for
+                    the database.
+                </p>
             </div>
+        </div>
+
+        <!-- Scrolling Paragraph -->
+        <div class="scrolling-paragraph">
+            <p>
+                To view all projects, navigate to the <a href="{{ url_for('main.projects') }}">Projects Page</a>. Thank
+                you for taking the time to explore my work!
+            </p>
         </div>
     </section>
 
     <!-- Section 5: Certifications -->
     <section class="certifications">
-        <h2>Certifications</h2>
+        <div class="certifications-header">
+            <h2>Certifications</h2>
+            <button class="view-cv-button" onclick="openCVPopup()">View My CV</button>
+        </div>
         <div class="certification-list">
-            <ul>
-                <li>Certificate in Web Development - 2023</li>
-                <li>Certification in Python Programming - 2022</li>
-                <li>Network Fundamentals - 2021</li>
-            </ul>
+            <div class="certification-card">
+                <h3>Web Development Fundamentals</h3>
+                <p><strong>Issuer:</strong> IBM</p>
+                <p><strong>Year:</strong> 2023</p>
+            </div>
+            <div class="certification-card">
+                <h3>Python Programming</h3>
+                <p><strong>Issuer:</strong> LinkedIn</p>
+                <p><strong>Year:</strong> 2022</p>
+            </div>
+            <div class="certification-card">
+                <h3>Database Development Fundamentals</h3>
+                <p><strong>Issuer:</strong> IBM</p>
+                <p><strong>Year:</strong> 2021</p>
+            </div>
+        </div>
+
+        <!-- View More Certifications Button -->
+        <div class="view-more">
+            <button class="view-more-button" onclick="navigateToMoreCertifications()">View More Certifications</button>
         </div>
     </section>
+
+    <!-- CV Popup -->
+    <div id="cv-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button" onclick="closeCVPopup()">&times;</span>
+            <iframe src="{{ url_for('static', filename='files/My_CV.pdf') }}" frameborder="0"
+                class="cv-iframe"></iframe>
+            <div class="popup-buttons">
+                <button onclick="downloadCV()">Download CV</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Section 6: Contact/CTA -->
     <section class="contact">
         <h2>Contact Me</h2>
-        <p>You can reach out to me via email at <a
-                href="mailto:victorphilemon001@gmail.com">victorphilemon001@gmail.com</a>
-            or call me at <strong>0741103341</strong>.</p>
+        <p>If you'd like to connect, feel free to reach out through any of the following channels:</p>
+
+        <div class="contact-details">
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p>For inquiries, project collaboration, or consulting, you can email me at
+                    <a href="mailto:victorphilemon001@gmail.com">victorphilemon001@gmail.com</a>. I respond promptly to
+                    all emails.
+                </p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Phone</h3>
+                <p>If you prefer to speak directly, I am available by phone at
+                    <strong>0741103341</strong>. Feel free to call.
+                </p>
+            </div>
+
+            <div class="contact-item">
+                <h3>LinkedIn</h3>
+                <p>Connect with me on <a href="https://www.linkedin.com/in/engineer-philemon/"
+                        target="_blank">LinkedIn</a> for professional updates, networking, or collaboration
+                    opportunities.</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>GitHub</h3>
+                <p>Explore my open-source projects and contributions on <a href="https://github.com/PhilTech-Hub"
+                        target="_blank">GitHub</a>. Feel free to reach out for any technical discussions or
+                    contributions.</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Twitter</h3>
+                <p>Follow me on <a href="https://twitter.com/philemonv_odera" target="_blank">Twitter</a> for updates on
+                    my latest work, tech trends, and other insights.</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>WhatsApp</h3>
+                <p>For quick responses, you can also reach me via <a href="https://wa.me/254741103341"
+                        target="_blank">WhatsApp</a>. Available for immediate discussions, consultations, and support.
+                </p>
+            </div>
+        </div>
     </section>
+
 </div>
 
 {% endblock %}

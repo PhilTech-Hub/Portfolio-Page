@@ -146,12 +146,23 @@ h1 {
 }
 
 
-.projects {
+.level-1 .level-1-content .projects {
     margin-top: 200px;
+    background-color: transparent;
+}
+.level-1 .level-1-content .projects h2{
+    background-color: transparent;
+    color: #d1e4f7;
 }
 
-.certifications {
+.level-1 .level-1-content .certifications {
     margin-top: 20px;
+    background-color: transparent;
+    color: #f4f8fc;
+}
+.level-1 .level-1-content .certifications h2{
+    background-color: transparent;
+    color: #d1e4f7;
 }
 
 .count {

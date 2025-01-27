@@ -87,6 +87,13 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.skills h2 {
+    text-align: center;
+    color: #10315f; /* Navy Blue */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
 .skills-list h3 {
     text-align: center;
     color: #0047ab; /* Navy Blue */
@@ -95,8 +102,9 @@ section {
 }
 
 .skills-list ul {
-    list-style: none;
-    padding: 0;
+    list-style:circle;
+    padding: 20px;
+    text-align: left;
 }
 
 .skills-list li {
@@ -108,12 +116,13 @@ section {
 
 /*Section 3: Education Section */
 .education {
+    position: relative;
+    top: 50px;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin-bottom: 100px;
 }
 
 .education h2 {

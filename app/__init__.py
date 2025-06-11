@@ -23,11 +23,18 @@ def create_app():
     if not os.access(instance_folder, os.W_OK):
         raise PermissionError(f"Instance folder {instance_folder} is not writable.")
 
-    # Set the database path and URI
-    db_path = os.path.join(instance_folder, 'portfolio.db')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', f'sqlite:///{db_path}')
+    # Get and normalize the DATABASE_URL
+    database_url = os.environ.get('DATABASE_URL')
+    if database_url and database_url.startswith('postgres://'):
+        # Convert old scheme to new one (required for SQLAlchemy compatibility)
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    else:
+        db_path = os.path.join(instance_folder, 'portfolio.db')
+        database_url = f'sqlite:///{db_path}'  # fallback
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
+
     # Debugging information
     print(f"Instance folder: {instance_folder}")
     print(f"Database URI: {app.config['SQLALCHEMY_DATABASE_URI']}")

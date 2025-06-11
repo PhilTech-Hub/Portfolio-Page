@@ -14,52 +14,67 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
+
 def create_app():
-    app = Flask(__name__)
+    # Create Flask app with instance-relative config for instance/ folder
+    app = Flask(
+        __name__,
+        instance_relative_config=True,
+    )
 
-    # Create the 'instance' folder if it doesn't exist
-    instance_folder = os.path.join(os.getcwd(), 'instance')
-    os.makedirs(instance_folder, exist_ok=True)
-    if not os.access(instance_folder, os.W_OK):
-        raise PermissionError(f"Instance folder {instance_folder} is not writable.")
+    # Ensure the instance folder exists
+    try:
+        os.makedirs(app.instance_path, exist_ok=True)
+    except OSError as e:
+        raise RuntimeError(f"Failed to create instance folder: {e}")
 
-    # Get and normalize the DATABASE_URL
-    database_url = os.environ.get('DATABASE_URL')
-    if database_url and database_url.startswith('postgres://'):
-        # Convert old scheme to new one (required for SQLAlchemy compatibility)
-        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    # Load DATABASE_URL from .env or use SQLite fallback
+    database_url = os.getenv('DATABASE_URL')
+    if database_url:
+        # Normalize Heroku-style postgres URL
+        if database_url.startswith('postgres://'):
+            database_url = database_url.replace('postgres://', 'postgresql://', 1)
     else:
-        db_path = os.path.join(instance_folder, 'portfolio.db')
-        database_url = f'sqlite:///{db_path}'  # fallback
+        # Use SQLite in the instance/ folder (good for local development)
+        db_path = os.path.join(app.instance_path, 'portfolio.db')
+        database_url = f"sqlite:///{db_path}"
+        print("Warning: DATABASE_URL not found. Using local SQLite fallback.")
 
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Debugging information
-    print(f"Instance folder: {instance_folder}")
+    # Set Flask environment if not already defined
+    app.config['ENV'] = os.getenv('FLASK_ENV', 'development')
+
+    # Set a secret key for session management
+    app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(16))
+    if not os.getenv('SECRET_KEY'):
+        print("Warning: SECRET_KEY not found in .env. A random one is being used.")
+
+    # Debug output
+    print(f"Instance path: {app.instance_path}")
     print(f"Database URI: {app.config['SQLALCHEMY_DATABASE_URI']}")
 
-    # Set the secret key
-    app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
-    if 'SECRET_KEY' not in os.environ:
-        print("Warning: SECRET_KEY not found in environment, using a randomly generated key.")
-
-    # Initialize Flask extensions
+    # Initialize extensions
     db.init_app(app)
     login_manager.init_app(app)
     migrate = Migrate(app, db)
 
-    # Avoid circular imports by placing this here
-    from app.models import User
+    # Import models to register with SQLAlchemy
+    from app.models import User  # Make sure app/models.py defines User model
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Import and register Blueprints
-    from app.routes import bp
-    from app.auth_routes import auth_bp
+    # Register blueprints
+    from app.routes import bp  # Make sure app/routes.py defines bp = Blueprint(...)
+    from app.auth_routes import auth_bp  # Make sure app/auth_routes.py defines auth_bp = Blueprint(...)
     app.register_blueprint(bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
+
+    # Create tables if not exist (for SQLite dev only)
+    with app.app_context():
+        db.create_all()
 
     return app

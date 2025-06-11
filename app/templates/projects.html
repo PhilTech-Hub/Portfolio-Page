@@ -4,5 +4,20 @@
 
 {% block content %}
     <h1>Projects</h1>
-    <p>Here are some of my recent projects.</p>
+    <p>Here are some of my recent projects:</p>
+
+    {% if projects %}
+        <ul>
+            {% for project in projects %}
+            <li>
+                <h3>{{ project.name }}</h3>
+                <p><strong>Description:</strong> {{ project.description }}</p>
+                <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+                <p><strong>Status:</strong> {{ project.status }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects uploaded yet.</p>
+    {% endif %}
 {% endblock %}

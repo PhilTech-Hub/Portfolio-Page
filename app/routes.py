@@ -28,7 +28,7 @@ def projects():
 
 @bp.route('/certifications')
 def certifications():
-    all_certifications = Certifications.query.all()
+    all_certifications = Certification.query.all()
     return render_template('certifications.html', certifications=all_certifications)
 
 

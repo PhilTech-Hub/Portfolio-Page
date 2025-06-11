@@ -23,11 +23,14 @@ def about():
 
 @bp.route('/projects')
 def projects():
-    return render_template('projects.html')
+    all_projects = Project.query.all()
+    return render_template('projects.html', projects=all_projects)
 
 @bp.route('/certifications')
 def certifications():
-    return render_template('certifications.html')
+    all_certifications = Certifications.query.all()
+    return render_template('certifications.html', certifications=all_certifications)
+
 
 @bp.route('/blog')
 def blog():

@@ -5,4 +5,20 @@
 {% block content %}
     <h1>Certifications</h1>
     <p>This section showcases my certifications.</p>
+
+    <ul>
+        {% for cert in certifications %}
+        <li>
+            <h3>{{ cert.title }}</h3>
+            <p><strong>Issued By:</strong> {{ cert.issued_by }}</p>
+            <p>
+                <a href="{{ url_for('static', filename=cert.file_path.split('static/')[-1]) }}" target="_blank">
+                    View Certificate
+                </a>
+            </p>
+        </li>
+        {% else %}
+        <p>No certifications uploaded yet.</p>
+        {% endfor %}
+    </ul>
 {% endblock %}

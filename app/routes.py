@@ -49,15 +49,28 @@ def download_cv():
 @login_required
 def upload_project():
     if request.method == 'POST':
-        name = request.form['name']
-        description = request.form['description']
-        technologies = request.form['technologies']
-        status = request.form['status']
-        new_project = Project(name=name, description=description, technologies=technologies, status=status)
+        name = request.form.get('name')
+        description = request.form.get('description')
+        technologies = request.form.get('technologies')
+        status = request.form.get('status')
+
+        # Basic validation
+        if not all([name, description, technologies, status]):
+            return "All fields are required", 400
+
+        new_project = Project(
+            name=name,
+            description=description,
+            technologies=technologies,
+            status=status
+        )
         db.session.add(new_project)
         db.session.commit()
-        return redirect(url_for('main.home'))
+
+        return redirect(url_for('main.projects'))  # Redirect to projects listing page
+
     return render_template('upload_project.html')
+
 
 @bp.route('/upload_certification', methods=['GET', 'POST'])
 @login_required
@@ -67,25 +80,29 @@ def upload_certification():
         issued_by = request.form['issued_by']
         file = request.files['file']
 
-        # Define the path where you want to save the uploaded files
+        if not file:
+            return "No file uploaded", 400
+
+        # Secure and unique file name (optional)
+        filename = file.filename
         cert_dir = os.path.join('static', 'certifications')
 
-        # Check if the directory exists, and create it if it doesn't
         if not os.path.exists(cert_dir):
             os.makedirs(cert_dir)
 
-        file_path = os.path.join(cert_dir, file.filename)
+        save_path = os.path.join(cert_dir, filename)
+        file.save(save_path)
 
-        # Save the file to the specified directory
-        file.save(file_path)
+        # Save only the relative path
+        relative_path = os.path.join('certifications', filename)
 
-        # Save certification information to the database
-        new_cert = Certification(title=title, issued_by=issued_by, file_path=file_path)
+        new_cert = Certification(title=title, issued_by=issued_by, file_path=relative_path)
         db.session.add(new_cert)
         db.session.commit()
 
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.projects'))  # Optional: redirect to see uploaded cert
     return render_template('upload_certification.html')
+
 
 @bp.route('/upload_resume', methods=['GET', 'POST'])
 def upload_resume():

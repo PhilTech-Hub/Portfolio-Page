@@ -1,12 +1,15 @@
 import os
-from flask import Blueprint, render_template, request, redirect, url_for
+import requests
+from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
 from app import db
 from app.models import Project, Certification
 from flask_login import login_required, current_user
-from flask import send_from_directory
 
 # Define a Blueprint for routes
 bp = Blueprint('main', __name__)
+
+GITHUB_USERNAME = "PhilTech-Hub"
+GITHUB_API_URL = f"https://api.github.com/users/{GITHUB_USERNAME}/repos"
 
 @bp.route('/')
 def home():
@@ -16,26 +19,45 @@ def home():
 def profile():
     return render_template('profile.html', user=current_user)
 
-
 @bp.route('/about')
 def about():
     return render_template('about.html')
 
 @bp.route('/projects')
 def projects():
-    all_projects = Project.query.all()
-    return render_template('projects.html', projects=all_projects)
+    # 1. Get manually uploaded projects
+    uploaded_projects = Project.query.all()
+
+    # 2. Fetch GitHub repositories
+    github_projects = []
+    try:
+        response = requests.get(GITHUB_API_URL)
+        if response.status_code == 200:
+            repos = response.json()
+            for repo in repos:
+                if not repo['fork']:  # Ignore forks
+                    github_projects.append({
+                        'name': repo['name'],
+                        'description': repo['description'] or "No description provided.",
+                        'technologies': "GitHub Repo",
+                        'status': "Private" if repo['private'] else "Public",
+                        'html_url': repo['html_url']
+                    })
+        else:
+            print(f"GitHub API error: {response.status_code}")
+    except Exception as e:
+        print(f"Error fetching GitHub projects: {e}")
+
+    return render_template('projects.html', projects=uploaded_projects, github_projects=github_projects)
 
 @bp.route('/certifications')
 def certifications():
     all_certifications = Certification.query.all()
     return render_template('certifications.html', certifications=all_certifications)
 
-
 @bp.route('/blog')
 def blog():
     return render_template('blog.html')
-
 
 @bp.route('/download_cv')
 def download_cv():
@@ -44,9 +66,6 @@ def download_cv():
         'My_CV.pdf',
         as_attachment=True
     )
-
-
-
 
 @bp.route('/upload_project', methods=['GET', 'POST'])
 # @login_required
@@ -57,7 +76,6 @@ def upload_project():
         technologies = request.form.get('technologies')
         status = request.form.get('status')
 
-        # Basic validation
         if not all([name, description, technologies, status]):
             return "All fields are required", 400
 
@@ -70,10 +88,9 @@ def upload_project():
         db.session.add(new_project)
         db.session.commit()
 
-        return redirect(url_for('main.projects'))  # Redirect to projects listing page
+        return redirect(url_for('main.projects'))
 
     return render_template('upload_project.html')
-
 
 @bp.route('/upload_certification', methods=['GET', 'POST'])
 # @login_required
@@ -86,7 +103,6 @@ def upload_certification():
         if not file:
             return "No file uploaded", 400
 
-        # Secure and unique file name (optional)
         filename = file.filename
         cert_dir = os.path.join('static', 'certifications')
 
@@ -96,16 +112,14 @@ def upload_certification():
         save_path = os.path.join(cert_dir, filename)
         file.save(save_path)
 
-        # Save only the relative path
         relative_path = os.path.join('certifications', filename)
 
         new_cert = Certification(title=title, issued_by=issued_by, file_path=relative_path)
         db.session.add(new_cert)
         db.session.commit()
 
-        return redirect(url_for('main.projects'))  # Optional: redirect to see uploaded cert
+        return redirect(url_for('main.projects'))
     return render_template('upload_certification.html')
-
 
 @bp.route('/upload_resume', methods=['GET', 'POST'])
 def upload_resume():
@@ -113,7 +127,5 @@ def upload_resume():
         file = request.files['resume-file']
         file_path = f"static/resumes/{file.filename}"
         file.save(file_path)
-        # Save resume information to the database, if needed
         return redirect(url_for('main.home'))
-    return render_template('upload_certification.html')  # You can reuse the same template for both
-
+    return render_template('upload_certification.html')

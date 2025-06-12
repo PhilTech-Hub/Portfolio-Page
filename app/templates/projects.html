@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %} Portfolio - Projects{% endblock %}
 
 {% block content %}
@@ -7,6 +6,7 @@
     <p>Here are some of my recent projects:</p>
 
     {% if projects %}
+        <h2>Uploaded Projects</h2>
         <ul>
             {% for project in projects %}
             <li>
@@ -18,11 +18,31 @@
                     <p><strong>Status:</strong> {{ project.status }}</p>
                   </div>
                 </div>
-
             </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No projects uploaded yet.</p>
+        <p>No uploaded projects.</p>
+    {% endif %}
+
+    {% if github_projects %}
+        <h2>GitHub Projects</h2>
+        <ul>
+            {% for project in github_projects %}
+            <li>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h3 class="card-title">
+                      <a href="{{ project.html_url }}" target="_blank">{{ project.name }}</a>
+                    </h3>
+                    <p class="card-text">{{ project.description }}</p>
+                    <p><strong>Status:</strong> {{ project.status }}</p>
+                  </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No public GitHub repositories found.</p>
     {% endif %}
 {% endblock %}

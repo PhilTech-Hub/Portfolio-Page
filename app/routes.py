@@ -8,8 +8,6 @@ from flask_login import login_required, current_user
 # Define a Blueprint for routes
 bp = Blueprint('main', __name__)
 
-GITHUB_USERNAME = "PhilTech-Hub"
-GITHUB_API_URL = f"https://api.github.com/users/{GITHUB_USERNAME}/repos"
 
 @bp.route('/')
 def home():
@@ -25,30 +23,30 @@ def about():
 
 @bp.route('/projects')
 def projects():
-    # 1. Get manually uploaded projects
-    uploaded_projects = Project.query.all()
-
-    # 2. Fetch GitHub repositories
+    all_projects = Project.query.all()
     github_projects = []
-    try:
-        response = requests.get(GITHUB_API_URL)
-        if response.status_code == 200:
-            repos = response.json()
-            for repo in repos:
-                if not repo['fork']:  # Ignore forks
-                    github_projects.append({
-                        'name': repo['name'],
-                        'description': repo['description'] or "No description provided.",
-                        'technologies': "GitHub Repo",
-                        'status': "Private" if repo['private'] else "Public",
-                        'html_url': repo['html_url']
-                    })
-        else:
-            print(f"GitHub API error: {response.status_code}")
-    except Exception as e:
-        print(f"Error fetching GitHub projects: {e}")
 
-    return render_template('projects.html', projects=uploaded_projects, github_projects=github_projects)
+    github_username = "PhilTech-Hub"
+    url = f"https://api.github.com/users/{github_username}/repos"
+    try:
+        response = requests.get(url, timeout=5)
+        data = response.json()
+
+        # Log the response to debug
+        print("GitHub API response:", data)
+
+        for repo in data:
+            if not repo.get("fork") and not repo.get("private"):
+                github_projects.append({
+                    'name': repo['name'],
+                    'description': repo['description'] or "No description provided.",
+                    'technologies': "GitHub Project",
+                    'status': "public"
+                })
+    except Exception as e:
+        print("GitHub API error:", e)
+
+    return render_template('projects.html', projects=all_projects, github_projects=github_projects)
 
 @bp.route('/certifications')
 def certifications():

@@ -26,8 +26,7 @@ def projects():
     all_projects = Project.query.all()
     github_projects = []
 
-    github_username = "PhilTech-Hub"
-    url = f"https://api.github.com/users/{github_username}/repos"
+    url = "https://api.github.com/users/PhilTech-Hub/repos"
     try:
         response = requests.get(url, timeout=5)
         data = response.json()

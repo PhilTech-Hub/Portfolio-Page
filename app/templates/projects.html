@@ -6,7 +6,7 @@
     <p>Here are some of my recent projects:</p>
 
     {% if projects %}
-    <h2>Uploaded Projects</h2>
+    <h2 style="text-decoration: underline; margin-bottom: 20px;">Uploaded Projects</h2>
     <div class="project-container" style="display: flex; flex-wrap: wrap; gap: 1rem;">
         {% for project in projects %}
         <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
@@ -42,7 +42,7 @@
     {% endif %}
 
     {% if github_projects %}
-    <h2>GitHub Projects</h2>
+    <h2 style="text-decoration: underline; margin-bottom: 20px;">GitHub Projects</h2>
     <div class="project-container" style="display: flex; flex-wrap: wrap; gap: 1rem;">
         {% for project in github_projects %}
         <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">

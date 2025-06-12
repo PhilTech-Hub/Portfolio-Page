@@ -49,7 +49,7 @@ def download_cv():
 
 
 @bp.route('/upload_project', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def upload_project():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -76,7 +76,7 @@ def upload_project():
 
 
 @bp.route('/upload_certification', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def upload_certification():
     if request.method == 'POST':
         title = request.form['title']

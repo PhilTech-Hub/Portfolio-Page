@@ -35,10 +35,11 @@ def create_app():
         if database_url.startswith('postgres://'):
             database_url = database_url.replace('postgres://', 'postgresql://', 1)
     else:
-        # Use SQLite in the instance/ folder (good for local development)
-        db_path = os.path.join(app.instance_path, 'portfolio.db')
+        db_path = os.path.abspath('portfolio.db')  # Save DB in project root
+        print(f"Using DB path: {db_path}")
         database_url = f"sqlite:///{db_path}"
-        print("Warning: DATABASE_URL not found. Using local SQLite fallback.")
+
+
 
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -73,8 +74,6 @@ def create_app():
     app.register_blueprint(bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    # Create tables if not exist (for SQLite dev only)
-    with app.app_context():
-        db.create_all()
+
 
     return app

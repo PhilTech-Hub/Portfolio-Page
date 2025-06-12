@@ -2,47 +2,165 @@
 {% block title %} Portfolio - Projects{% endblock %}
 
 {% block content %}
-    <h1>Projects</h1>
+  <h1>Projects</h1>
     <p>Here are some of my recent projects:</p>
 
     {% if projects %}
-        <h2>Uploaded Projects</h2>
-        <ul>
-            {% for project in projects %}
-            <li>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h3 class="card-title">{{ project.name }}</h3>
-                    <p class="card-text">{{ project.description }}</p>
-                    <p><strong>Tech:</strong> {{ project.technologies }}</p>
-                    <p><strong>Status:</strong> {{ project.status }}</p>
-                  </div>
+    <h2>Uploaded Projects</h2>
+    <div class="project-container" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        {% for project in projects %}
+        <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/img/project_placeholder.jpg');">
+            <div class="lab-overlay">
+                <h3 style="margin: 0; font-size: 1rem;">{{ project.name }}</h3>
+                <p>{{ project.description }}</p>
+                <p><strong>Tech:</strong> {{ project.technologies }}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: #007BFF;"><strong>Status:</strong> {{ project.status }}</span>
+                <button onclick="openLab('project{{ loop.index }}')" style="background-color:rgb(40, 109, 182); color: white; border: none; padding: 6px 12px; cursor: pointer;">View Project</button>
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Popup Modals for Uploaded Projects -->
+    {% for project in projects %}
+        <div id="project{{ loop.index }}" class="project-modal" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto;">
+        <div class="lab-modal-content">
+            <span class="close" onclick="closeLab('project{{ loop.index }}')">&times;</span>
+            <h3>{{ project.name }}</h3>
+            <p><strong>Description:</strong> {{ project.description }}</p>
+            <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+            <p><strong>Status:</strong> {{ project.status }}</p>
+        </div>
+        </div>
+    {% endfor %}
     {% else %}
-        <p>No uploaded projects.</p>
+    <p>No uploaded projects.</p>
     {% endif %}
 
     {% if github_projects %}
-        <h2>GitHub Projects</h2>
-        <ul>
-            {% for project in github_projects %}
-            <li>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h3 class="card-title">
-                      <a href="{{ project.html_url }}" target="_blank">{{ project.name }}</a>
-                    </h3>
-                    <p class="card-text">{{ project.description }}</p>
-                    <p><strong>Status:</strong> {{ project.status }}</p>
-                  </div>
+    <h2>GitHub Projects</h2>
+    <div class="project-container" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        {% for project in github_projects %}
+        <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/img/github_placeholder.jpg');">
+            <div class="lab-overlay">
+                <h3><a href="{{ project.html_url }}" target="_blank" style="color: blue;">{{ project.name }}</a></h3>
+                <p>{{ project.description }}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: #007BFF;"><strong>Status:</strong> {{ project.status }}</span>
+                <a href="{{ project.html_url }}" target="_blank" style="background-color:rgb(40, 109, 182); color: white; text-decoration: none; padding: 6px 12px;">View Project</a>
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% else %}
-        <p>No public GitHub repositories found.</p>
+    <p>No public GitHub repositories found.</p>
     {% endif %}
+
+
+    <div class="lab" style="margin-top: 50px; margin-bottom: 30px; padding: 20px">
+        <h2 style="text-decoration: underline; margin-bottom: 20px;">Lab Challenges</h2>
+
+        <div class="lab-container" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <!-- Lab 1 -->
+            <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/images/labs/Lab1_Debra-microsoft-entra-profile.PNG'); height: 200px; background-size: cover; background-position: center;">
+                <div class="lab-overlay" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.6); color: white; width: 100%; padding: 10px;">
+                <h3 style="margin: 0; font-size: 1rem;">Lab 1: Explore Microsoft Entra ID User Settings</h3>
+                <button onclick="openLab('lab1')" style="margin-top: 5px;">View Lab</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Lab 2 -->
+            <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/images/labs/Lab1_Diego-password-reset.PNG'); height: 200px; background-size: cover; background-position: center;">
+                <div class="lab-overlay" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.6); color: white; width: 100%; padding: 10px;">
+                <h3 style="margin: 0; font-size: 1rem;">Lab 2: Microsoft Entra Self-Service Password Reset</h3>
+                <button onclick="openLab('lab2')" style="margin-top: 5px;">View Lab</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Add Lab Cards 3–6 below here using same structure -->
+             <!-- Lab 3 -->
+            <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/images/labs/Lab1_Debra-policy.PNG'); height: 200px; background-size: cover; background-position: center;">
+                <div class="lab-overlay" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.6); color: white; width: 100%; padding: 10px;">
+                <h3 style="margin: 0; font-size: 1rem;">Lab 3: Microsoft Entra Conditional Access</h3>
+                <button onclick="openLab('lab2')" style="margin-top: 5px;">View Lab</button>
+                </div>
+            </div>
+            </div>
+            <!-- Lab 4 -->
+            <div class="lab-card" style="position: relative; width: 300px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <div class="lab-image" style="background-image: url('/static/images/labs/Lab1_Debra-microsoft-entra.PNG'); height: 200px; background-size: cover; background-position: center;">
+                <div class="lab-overlay" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.6); color: white; width: 100%; padding: 10px;">
+                <h3 style="margin: 0; font-size: 1rem;">Lab 4: Explore Privileged Identity Management (PIM)</h3>
+                <button onclick="openLab('lab2')" style="margin-top: 5px;">View Lab</button>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+
+        <!-- Lab Modal 1 -->
+        <div id="lab1" class="lab-modal" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto;">
+            <div class="lab-modal-content" style="background: #fff; margin: 5% auto; padding: 20px; border-radius: 10px; width: 80%; max-width: 600px; position: relative;">
+            <span class="close" onclick="closeLab('lab1')" style="position: absolute; right: 10px; top: 10px; font-size: 24px; cursor: pointer;">&times;</span>
+            <h3>Lab: Explore Microsoft Entra ID User Settings</h3>
+            <p><strong>Objective:</strong> Configure and manage user settings in Microsoft Entra ID.</p>
+            <p><strong>Tasks Completed:</strong></p>
+            <ul>
+                <li>Accessed User Settings in Microsoft Entra Admin Center.</li>
+                <li>Configured authentication methods (SMS, Email OTP, Authenticator).</li>
+                <li>Assigned roles (Global Reader, User Admin).</li>
+                <li>Reviewed and updated user profile attributes.</li>
+            </ul>
+            <p><strong>Key Learnings:</strong></p>
+            <ul>
+                <li>Granular control over user roles and auth.</li>
+                <li>Bulk user updates improve efficiency.</li>
+            </ul>
+            </div>
+        </div>
+
+        <!-- Lab Modal 2 -->
+        <div id="lab2" class="lab-modal" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto;">
+            <div class="lab-modal-content" style="background: #fff; margin: 5% auto; padding: 20px; border-radius: 10px; width: 80%; max-width: 600px; position: relative;">
+            <span class="close" onclick="closeLab('lab2')" style="position: absolute; right: 10px; top: 10px; font-size: 24px; cursor: pointer;">&times;</span>
+            <h3>Lab: Microsoft Entra Self-Service Password Reset (SSPR)</h3>
+            <p><strong>Objective:</strong> Enable and test SSPR policies.</p>
+            <p><strong>Tasks Completed:</strong></p>
+            <ul>
+                <li>Enabled SSPR in admin center.</li>
+                <li>Set 2 auth methods (Email + Mobile).</li>
+                <li>Tested reset flow and verified logs.</li>
+            </ul>
+            <p><strong>Key Learnings:</strong></p>
+            <ul>
+                <li>SSPR empowers users and reduces IT load.</li>
+                <li>MFA boosts security during resets.</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+  
+
+  <!-- Add Lab Modals 3–6 below here -->
+
+  <script>
+    function openLab(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    function closeLab(id) {
+      document.getElementById(id).style.display = "none";
+    }
+  </script>
 {% endblock %}

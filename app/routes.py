@@ -4,7 +4,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, send_f
 from app import db
 from app.models import Project, Certification
 from flask_login import login_required, current_user
-from . import bp  # or whatever your Blueprint is named
 
 
 # Define a Blueprint for routes

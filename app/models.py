@@ -8,8 +8,8 @@ class Project(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
-    technologies = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text, nullable=False)  # Changed from String(200)
+    technologies = db.Column(db.Text, nullable=False)  # Changed from String(200)
     status = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
@@ -39,14 +39,12 @@ class User(UserMixin, db.Model):
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
-        self.set_password(password)  # Automatically hash on creation
+        self.set_password(password)
 
     def set_password(self, password):
-        """Hash and set the user's password."""
         self.password = generate_password_hash(password, method='pbkdf2:sha256')
 
     def check_password(self, password):
-        """Check hashed password."""
         return check_password_hash(self.password, password)
 
     def __repr__(self):
